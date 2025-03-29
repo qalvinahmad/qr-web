@@ -9,12 +9,17 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "./",
+  base: "/",
   build: {
     outDir: "dist",
     sourcemap: true,
-  },
-  optimizeDeps: {
-    exclude: ['lucide-react'],
+    assetsDir: "assets",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+        },
+      },
+    },
   },
 })
